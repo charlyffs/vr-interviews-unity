@@ -1,37 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
+using TMPro;
 
 public class InterviewController : MonoBehaviour
 {
 
-    public GameObject dummy;
+    private GameObject dummy;
     private Animator animator;
-    public RuntimeAnimatorController runtimeAnimatorController;
+    public TextMeshProUGUI textMesh;
 
     // Start is called before the first frame update
     void Start()
     {
+        dummy = GameObject.FindGameObjectWithTag("Player");
         animator = dummy.gameObject.GetComponent<Animator>();
-        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("/Animations/Controllers/Capoeira.controller");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        StartCoroutine(InterviewFlow());
     }
 
     IEnumerator InterviewFlow()
     {
-        //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        for (int i = 0; i < 5; i++){
+            debugLog((5 - i).ToString());
+            yield return new WaitForSeconds(1);
+        }
+        animator.runtimeAnimatorController = Resources.Load<AnimatorController>("Animations/Controllers/Capoeira");
+    }
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
-
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-
+    private void debugLog(string text){
+        Debug.Log("Stage " + text + ". At time: " + Time.time);
+        textMesh.text = text;
     }
 }
