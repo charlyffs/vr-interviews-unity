@@ -11,7 +11,6 @@ public class InterviewController : MonoBehaviour
     private Animator animator;
     public TextMeshProUGUI textMesh;
 
-    // Start is called before the first frame update
     void Start()
     {
         dummy = GameObject.FindGameObjectWithTag("Player");
