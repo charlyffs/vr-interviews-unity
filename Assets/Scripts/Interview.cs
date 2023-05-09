@@ -1,29 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor.Animations;
 
-public class Interview : MonoBehaviour
+public class Interview 
 {
     private string title;
     private string basePath;
-    private int duration;
-    private int length;
     private List<InterviewStep> steps;
 
     public Interview(string title, string basePath){
         this.title = title;
         this.basePath = basePath;
+        steps = new List<InterviewStep>();
     }
 
-    public void addStep(int duration, string animatorControllerPath, string audioClipPath){
-        steps.Add(new InterviewStep(duration, animatorControllerPath, audioClipPath));
-        this.length += 1;
-        this.duration += duration;
+    public void addStep(InterviewStep step){
+        steps.Add(step);
+    }
+
+    public string getTitle() {
+        return title;
     }
 
     public string getBasePath(){
-        return basePath;
+        return "Interviews/" + basePath;
     }
 
     public List<InterviewStep> getSteps(){
