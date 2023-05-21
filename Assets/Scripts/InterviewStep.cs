@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor.Animations;
+using System;
 
 public class InterviewStep : MonoBehaviour
 {
@@ -9,11 +10,19 @@ public class InterviewStep : MonoBehaviour
 
     private Interview interview;
 
-    public InterviewStep(int duration, string animatorControllerPath, string audioClipPath, Interview owner){
+    public InterviewStep(int duration, string animatorControllerPath, Interview owner){
         this.duration = duration;
+        this.animatorControllerPath = animatorControllerPath;
+        this.audioClipPath = "";
+        interview = owner;
+    }
+
+    public InterviewStep(string animatorControllerPath, string audioClipPath, Interview owner) {
         this.animatorControllerPath = animatorControllerPath;
         this.audioClipPath = audioClipPath;
         interview = owner;
+        AudioClip audioClip = getAudioClip();
+        duration = (int) Math.Ceiling(audioClip.length);
     }
 
     public int getDuration(){

@@ -1,29 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
-using TMPro;
 
 public class InterviewController : MonoBehaviour
 {
 
-    private GameObject dummy;
     private Animator animator;
     private AudioSource audioSource;
-    public TextMeshProUGUI textMesh;
     private List<Interview> interviews;
 
     void Start()
     {
-        dummy = GameObject.FindGameObjectWithTag("Player");
-        animator = dummy.gameObject.GetComponent<Animator>();
-        audioSource = dummy.gameObject.GetComponent<AudioSource>();
+        GameObject interviewer = GameObject.FindGameObjectWithTag("Interviewer");
+        animator = interviewer.gameObject.GetComponent<Animator>();
+        audioSource = interviewer.gameObject.GetComponent<AudioSource>();
 
         Interview interview1;
         interview1 = new Interview("1 To 1", "personal"); 
-        interview1.addStep(new InterviewStep(5, "Capoeira", "test", interview1));
-        interview1.addStep(new InterviewStep(2, "", "test", interview1));
-        interview1.addStep(new InterviewStep(3, "Capoeira", "", interview1));
+        interview1.addStep(new InterviewStep("talking", "1", interview1));
+        interview1.addStep(new InterviewStep(3, "idle", interview1));
+        interview1.addStep(new InterviewStep("talking", "2", interview1));
 
         print("starting interview");
         StartCoroutine(runInterview(interview1));
