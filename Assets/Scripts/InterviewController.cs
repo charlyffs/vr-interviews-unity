@@ -16,10 +16,14 @@ public class InterviewController : MonoBehaviour
         audioSource = interviewer.gameObject.GetComponent<AudioSource>();
 
         Interview interview1;
-        interview1 = new Interview("1 To 1", "personal"); 
-        interview1.addStep(new InterviewStep("talking", "1", interview1));
-        interview1.addStep(new InterviewStep(3, "idle", interview1));
-        interview1.addStep(new InterviewStep("talking", "2", interview1));
+        interview1 = new Interview("1 To 1", "personal");
+        interview1.addStep(new InterviewStep("Speaking", "1", interview1));
+        interview1.addStep(new InterviewStep(3, "Idle", interview1));
+        interview1.addStep(new InterviewStep("Speaking2", "2", interview1));
+        interview1.addStep(new InterviewStep(3, "Nodding", interview1));
+        interview1.addStep(new InterviewStep("Speaking", "3", interview1));
+        interview1.addStep(new InterviewStep(3, "Idle", interview1));
+        interview1.addStep(new InterviewStep("Speaking2", "4", interview1));
 
         print("starting interview");
         StartCoroutine(runInterview(interview1));
@@ -29,13 +33,16 @@ public class InterviewController : MonoBehaviour
     {
         List<InterviewStep> steps = interview.getSteps();
 
-        foreach(InterviewStep step in steps){
+        foreach (InterviewStep step in steps)
+        {
             animator.runtimeAnimatorController = step.getAnimatorController();
-            if (step.getAudioClip() != null){
+            if (step.getAudioClip() != null)
+            {
                 audioSource.clip = step.getAudioClip();
                 audioSource.Play();
             }
-            for (int i = 0; i < step.getDuration(); i++) {
+            for (int i = 0; i < step.getDuration(); i++)
+            {
                 print((step.getDuration() - i).ToString());
                 yield return new WaitForSeconds(1);
             }
