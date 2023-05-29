@@ -16,7 +16,7 @@ public static class SavWav
         }
 
         //var filepath = Path.Combine(Application.persistentDataPath, filename);
-        var filepath = Path.Combine("Records/", filename);
+        var filepath = Path.Combine("Output/", filename);
         Debug.Log(filepath);
 
         // Make sure directory exists if user is saving to sub dir.
