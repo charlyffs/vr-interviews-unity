@@ -21,17 +21,16 @@ public class InterviewController : MonoBehaviour
         cont = 1;//Inicializacion
         condition = true; //Inicializacion
         interview1 = new Interview("1 To 1", "personal");
-
-        interview1.addStep(new InterviewStep("Speaking", "Intro 1", interview1));
-        interview1.addStep(new InterviewStep(2, "Nodding", interview1));
-        interview1.addStep(new InterviewStep("Speaking2", "EA 1", interview1));
-        interview1.addStep(new InterviewStep(10, "Nodding", interview1));
-        interview1.addStep(new InterviewStep("Speaking2", "EA 2.1", interview1));
-        interview1.addStep(new InterviewStep(10, "Nodding", interview1));
-        interview1.addStep(new InterviewStep("Speaking2", "EA 3", interview1));
-        interview1.addStep(new InterviewStep(10, "Nodding", interview1));
-        interview1.addStep(new InterviewStep("Speaking2", "EA 4", interview1));
-        interview1.addStep(new InterviewStep(10, "Nodding", interview1));
+        interview1.addStep(new InterviewStep("speaking", "Intro 1", interview1));
+        interview1.addStep(new InterviewStep(2, "nodding", interview1));
+        interview1.addStep(new InterviewStep("speaking", "EA 1", interview1));
+        interview1.addStep(new InterviewStep(5, "idle", interview1));
+        interview1.addStep(new InterviewStep("speaking", "EA 2.1", interview1));
+        interview1.addStep(new InterviewStep(5, "nodding", interview1));
+        interview1.addStep(new InterviewStep("speaking", "EA 3", interview1));
+        interview1.addStep(new InterviewStep(5, "idle", interview1));
+        interview1.addStep(new InterviewStep("speaking", "EA 4", interview1));
+        interview1.addStep(new InterviewStep(5, "nodding", interview1));
 
         print("starting interview");
         StartCoroutine(runInterview(interview1));
